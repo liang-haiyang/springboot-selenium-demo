@@ -1,0 +1,7 @@
+server:
+  port: 8083
+
+app:
+  #  可以取值chrome，firefox , ie ，edge(win10 新浏览器)不区分大小写
+  browser: chrome
+  time-out: 20
