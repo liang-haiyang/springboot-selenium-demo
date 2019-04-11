@@ -33,6 +33,15 @@
                 <include>*.jar</include>
             </includes>
         </fileSet>
+        <!--注册jar包为windows服务程序-->
+        <fileSet>
+            <directory>${project.basedir}/win-tools</directory>
+            <outputDirectory>/bin</outputDirectory>
+            <includes>
+                <include>*.exe</include>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
         <!--配置文件-->
         <fileSet>
             <directory>${project.basedir}/src/main/resources/</directory>
