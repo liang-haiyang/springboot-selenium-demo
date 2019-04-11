@@ -20,53 +20,41 @@ public class SpringbootSeleniumDemoApplicationTests {
 
     @Test
     public void contextLoads() throws IOException, InterruptedException {
-        browserService.openURL("http://e.chanjet.com/#home/customer");
+        browserService.openURL("xxx");
         browserService.maximizeWindows();
-        // 开始登陆
-        browserService.click(By.id("loginBtnId"));
+        // 无验证码登录  -》 开始登陆
+        browserService.click(By.id("login entrance id"));
         LoginMessage loginMessage1 = new LoginMessage();
-        loginMessage1.setUsername(By.id("login3loginNameIpt"), "13324050548");
-        loginMessage1.setPassword(By.id("login3loginPwdIpt"), "123456");
-        loginMessage1.setLoginButtonBy(By.id("login3Btn"));
+        loginMessage1.setUsername(By.id("username id"), "username");
+        loginMessage1.setPassword(By.id("password id"), "password");
+        loginMessage1.setLoginButtonBy(By.id("login button id"));
         browserService.login(loginMessage1);
-        // 去掉广告弹窗
+        // 刷新浏览器，可以去掉一些广告弹窗
         browserService.refresh();
-        // 搜索公司名称
-        browserService.sendKeys(By.xpath("//*[@id=\"cusSearchTxt\"]"), "沈阳诸葛企业\n");
+        // 搜索公司名称, 注意xpath在不同浏览器可能不同
+        browserService.sendKeys(By.xpath("xpath"), "xxxx");
         Thread.sleep(2000);
-        //获取搜索到的第一行
-        String searchResult = browserService.getInputText(By.xpath("//*[@id=\"assign_temp_wp\"]/table/tbody/tr/td[2]/div/span[2]"));
-        if (!searchResult.contains("沈阳诸葛企业")) {
-            return;
-        }
-        //进入资产负债表
-        browserService.click(By.xpath("//*[@id=\"assign_temp_wp\"]/table/tbody/tr/td[9]/a[1]"));
-        browserService.moveMouseToElement(By.xpath("//*[@id=\"app/vm/Header_0\"]/div[24]"));
-        browserService.moveMouseToElement(By.xpath("//*[@id=\"costReportManage\"]/a/span[2]"));
-        browserService.click(By.xpath("//*[@id=\"common/form/LeftCommandMenu_9\"]/div[1]/div/div/ul/li[1]/a"));
+        //获取文本框
+        String searchResult = browserService.getInputText(By.xpath("input xpath"));
+        // 鼠标悬浮事件
+        browserService.moveMouseToElement(By.xpath("xxx"));
         //获取货币资金值
-        String monetaryFund = browserService.getInputText(By.xpath("//*[@id=\"nav_balanceSheet\"]/div[2]/div[2]/div[2]/table/tbody/tr[2]/td[3]/span"));
-        //打开一个新的标签
-        browserService.openURLNewTab("https://etax.liaoning.chinatax.gov.cn/sword?ctrl=LoginCtrlTmp_logout#");
+        //在浏览器打开一个新的标签
+        browserService.openURLNewTab("new url");
         // 进入登陆页面
-        browserService.click(By.xpath("/html/body/div[2]/div/a"));
+        browserService.click(By.xpath("xxxxx"));
         // 开始登陆
         LoginMessage loginMessage2 = new LoginMessage();
-        loginMessage2.setUsername(By.id("name2"), "91210103MA0XYDTP7T");
-        loginMessage2.setPassword(By.id("pass2"), "ZZT3LW");
-        String verifyCode = browserService.getVerifyCode(By.id("picimg"));
-        loginMessage2.setVerifyCode(By.id("check_code"), verifyCode);
-        loginMessage2.setLoginButtonBy(By.id("loginDW"));
+        loginMessage2.setUsername(By.id("username input id"), "username");
+        loginMessage2.setPassword(By.id("username input id"), "password");
+        String verifyCode = browserService.getVerifyCode(By.id("verify code image id"));
+        loginMessage2.setVerifyCode(By.id("verify input "), verifyCode);
+        loginMessage2.setLoginButtonBy(By.id("login button"));
         browserService.login(loginMessage2);
-        // 去掉弹框
-        browserService.refresh();
-        browserService.click(By.xpath("//*[@id=\"cwgnlb\"]/li[3]/a"));
-        //点击下一步
+
         // 对于一个新的iframe，需要将将driver重新定位到iframe
         browserService.switchToFrame("gndkiframe");
-        browserService.click(By.xpath("//*[@id=\"sbToolBar\"]/div[4]/div[3]/div[2]"));
         browserService.switchToFrame(2);
-        browserService.sendKeys(By.xpath("//*[@id=\"zcfzbxxForm_h1l2\"]"), monetaryFund);
 
         System.out.println("xxx");
     }
